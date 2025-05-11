@@ -1,11 +1,21 @@
-
 <div id="main-container">
-  <section id="car">
+  <section class="main-section" id="car">
     <h1 class="section-title" id="car-title">Welcome to CSE Motors!</h1>
-    <div id="card"></div>
-    <img src="images/vehicles/delorean.jpg" alt="delorean">
+    
+    <div id="car-image-container">
+      <img id="car-image" src="images/vehicles/delorean.jpg" alt="delorean">
+      <div id="car-card">
+      <h2 id="car-card-title">DMC Delorean</h2>
+      <ul id="car-card-ul">
+        <li class="car-card-li">3 Cup holders</li>
+        <li class="car-card-li">Superman doors</li>
+        <li class="car-card-li">Fuzzy dice!</li>
+      </ul>
+      <button id="car-card-button" >Own Today</button>
+    </div>
+    </div>
   </section>
-  <section id="reviews">
+  <section class="main-section" id="reviews">
     <h1 class="section-title" id="reviews-title">DMC Delorean Reviews</h1>
     <ul id="reviews-ul">
       <li class="reviews-li">"So fast it's almost like traveling in time." (4/5)</li>
@@ -15,8 +25,9 @@
       <li class="reviews-li">"80's livin and I love it!" (5/5)</li>
     </ul>
   </section>
-  <section id="upgrades">
+  <section class="main-section" id="upgrades">
     <h1 class="section-title" id="upgrades-title">Delorean Upgrades</h1>
+    <div id="upgrades-card-container">
     <div class="upgrades-card">
       <div class="upgrades-card-div"><img class="upgrades-card-img" src="images/upgrades/flux-cap.png" alt="Flux capacitor"></div>
       <a class="upgrades-card-a">Flux Capacitor</a>
@@ -32,6 +43,6 @@
       <div class="upgrades-card-div"><img class="upgrades-card-img" src="images/upgrades/hub-cap.jpg" alt="Hub caps"></div>
       <a class="upgrades-card-a">Hub Caps</a>
     </div>
+    </div>
   </section>
-
 </div>
