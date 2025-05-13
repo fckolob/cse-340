@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lobster&family=Tagesschrift&family=Tektur:wght@400..900&display=swap');
+
+
 /*Mobile view*/
 
 body{
@@ -5,6 +8,7 @@ body{
   padding: 0;
   font-family: 'Roboto', sans-serif;
   background-color: #f7f7f7;
+  width: 100%;
 }
 
 #top-header{
@@ -12,61 +16,80 @@ body{
   position: relative;
   display: flex;
   justify-items: center;
+  
 }
 
 #site-title-container{
-  position: absolute;
-  left:20px;
-  padding: 1rem;
+  position: relative;
+  left: 10px;
+  top: 5px;
+  width: 100%;
   margin: 0 auto;
+  text-align: center;
 
 }
 
 #tools{
   position: absolute;
-  right: 20px;
+  right: 10%;
+  margin-top: 3%;
 }
 
 #my-account{
   font-size: 1rem;
-  padding: 1rem;
+  
   margin: 0 auto;
 }
 
 #site-title{
-  font-size: 2rem;
+  font-size: 1.5rem;
+  font-family:"Tektur";
+  text-align: center;
+  position: absolute;
+  left: 10%;
+  margin-top: 1%;
 }
 
 .navigation{
+  display: flex;
   width: 100%;
-  max-width: 300px;
-  display:flex;
-  flex-direction: row;
-  gap: 1rem;
-  
+  align-items: center;
+  margin: 0 auto;
+  margin-top: 15%;
+  margin-bottom: 10%;
+  text-align: center;
 }
 
 .navigation-ul{
   width: 100%;
-  
-  display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
-  list-style-type: none;
-  background-color: black;
-  color: antiquewhite;
+  display: flex;
+  justify-content: space-around;
+  align-items:center;
+  margin: 0 auto;
   text-align: center;
-  font-size: .8rem;
+  background-color: black;
+  padding-right: 2rem;
+  
 }
 
 .navigation-li{
-  padding: .5rem;
+  width: 100%;
   margin: 0 auto;
-  transition: ease-in-out 1s;
   text-align: center;
+  text-decoration: none;
+  font-size: 0.8rem;
+  font-family:"Lobster";
+  padding-top: 5px;
+  padding-bottom: 5px;
+  list-style-type: none;
+  transition: ease-in-out 1s;
+  cursor: pointer;
+  background-color: black;
+  color: beige;
 }
 
 .navigation-li:hover{
-  color: blueviolet;
+  color:aqua;
   transform: scale(1.4);
 }
 
@@ -82,11 +105,11 @@ body{
   flex: 1 250px;
   flex-direction: column;
   align-items: center;
-  max-width: 300px;
-  padding: 20px 30px;
+  width: 90%;
   background-color: #646cff;
   border-radius: 10px;
   box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+  margin: 0 auto;
   }
 
   #car{
@@ -104,16 +127,15 @@ body{
   }
 
   #car-card{
-    
-    
     max-width: 100px;
-    max-height: 80px;
+    max-height: 100px;
+    height: auto ;
+    width: auto;
     padding: .5rem;
     position:absolute;
     top: 90px;
     left: 5px;
     background-color: rgba(0 0 0 / 30%);
-    
     }
 
   #car-card-title{
@@ -126,13 +148,13 @@ body{
     list-style-type: none;
     padding-left: 0;
     margin-left: 0;
-    font-size: .5rem;
     color: blue;
+    padding-top: none;
   }
 
-  #car-card-li{
-    font-size: .1rem;
-    
+  .car-card-li{
+    font-size: .6rem;
+    margin-bottom: none;
   }
 
   #car-image{
@@ -145,6 +167,13 @@ body{
     color:aliceblue;
     background-color: blue;
     border-radius: 1rem;
+    transition: ease-in-out 1s;
+  }
+
+  #car-card-button:hover{
+    background-color:aliceblue;
+    color: blue;
+    transform: scale(1.2);
   }
 
   #upgrades{
@@ -176,13 +205,14 @@ body{
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    gap: 10px;
     width: 70%;
+    background-color: cornflowerblue;
+    height: 70%;
   }
 
   .upgrades-card-img{
-    width: 100%;
-    height: 100%;
+    width: 60%;
+    height: 60%;
     margin: 0 auto;
   }
 
@@ -192,12 +222,148 @@ body{
     margin: 0 auto;
     color:darkblue;
     transition: ease-in-out 1s;
-    
   }
 
   .upgrades-card-a:hover{
     text-decoration: underline;
     transform: scale(1.3);
     color: crimson;
+  }
+
+  footer{
+    width: 100%;
+    background-color: black;
+    color: #f7f7f7;
+    text-align: center;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    margin-top: 1rem;
     
+  }
+
+  @media only screen and (min-width: 600px){
+
+    .navigation-li{
+      font-size: 1.5rem;
+    }
+
+
+    #site-title-container{
+      left:110px;
+    }
+
+    #site-title{
+      font-size: 2.5rem;
+    }
+
+    #main-container{
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .main-section{
+      height: auto;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 90%;
+      background-color: #646cff;
+      border-radius: 10px;
+      box-shadow: 0 3px 3px rgba(0, 0, 0, 0.15);
+      margin: 0 auto;
+    }
+
+    #car{
+      min-height: 500px;
+      height:initial;
+      
+      display: flex;
+      align-items: center;
+    }
+
+
+
+    #car-image-container{
+      position: relative;
+      width: 100%;
+      height: 100%;
+      margin: 0 auto;
+      display:flex;
+      align-items: center;
+      
+    }
+    
+    #car-image{
+      width: 70%;
+      height: auto;
+      position: absolute;
+      left: 15%;
+    }
+
+    #car-card{
+      max-width: 100%;
+      max-height: 100%;
+      width: 18%;
+      height: auto;
+      padding: .5rem;
+      position:absolute;
+      top: 25%;
+      left: 18%;
+      background-color: rgba(0 0 0 / 40%);
+    }
+
+    #car-card-title{
+      font-size: 1.2rem;
+      color: blue;
+    }
+
+    #car-card-ul{
+      text-align: left;
+      list-style-type: none;
+      padding-left: 0;
+      margin-left: 0;
+      font-size: 1rem;
+      color: blue;
+      padding-top: .1rem;
+  
+    }
+
+    .car-card-li{
+      font-size: .9rem;
+      font-weight: bold;
+      margin-bottom: .2rem;
+    }
+
+     #car-card-button{
+      font-size: 1rem;
+      color:aliceblue;
+      background-color: blue;
+      border-radius: 1rem;
+      transition: ease-in-out 1s;
+    }
+
+     @media only screen and (min-width: 600px) and (max-width: 700px){
+
+      #car-card{
+        top: 30%;
+      }
+
+      #car-card-title{
+        font-size: .8rem;  
+      }
+
+      #car-card-ul{
+        padding-top: 0px;
+      }
+
+      .car-card-li{
+        margin-bottom: .1rem;
+        font-size: .5rem;
+      }
+
+      #car-card-button{
+        font-size: .6rem;
+      }
+     }
   }
