@@ -149,12 +149,12 @@ body{
     padding-left: 0;
     margin-left: 0;
     color: blue;
-    padding-top: none;
+    padding-top: 0px;
   }
 
   .car-card-li{
     font-size: .6rem;
-    margin-bottom: none;
+    margin-bottom: 0px;
   }
 
   #car-image{
