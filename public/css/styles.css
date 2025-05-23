@@ -88,6 +88,16 @@ body{
   color: beige;
 }
 
+.nav-a{
+  color: beige;
+  transition: ease-in-out 1s;
+  cursor: pointer;
+}
+
+.nav-a:hover{
+  color:aqua;
+}
+
 .navigation-li:hover{
   color:aqua;
   transform: scale(1.4);
