@@ -73,9 +73,14 @@ Util.buildDetailsGrid = async function(data) {
     detailsGrid += `<p id="details-description">${data.inv_description}</p>`
     detailsGrid += `<h2 id="details-miles">${data.inv_miles} Miles</h2>`
     detailsGrid += `<h2 id="details-color">${data.inv_color}</h2>`
-  }
-  return detailsGrid
+    
+} 
+else{
+  detailsGrid += '<p class="notice">Sorry, no such vehicle could be found.</p>'
 }
+return detailsGrid
+  }
+  
 
 /* ****************************************
  * Middleware For Handling Errors

@@ -368,6 +368,10 @@ body{
     
   }
 
+  #footer-error{
+    color: #f7f7f7;
+  }
+
   @media only screen and (min-width: 600px){
 
     .navigation-li{
