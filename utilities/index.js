@@ -58,6 +58,24 @@ Util.buildClassificationGrid = async function(data){
   return grid
 }
 
+/* **************************************
+* Build the classification view HTML
+* ************************************ */
+
+Util.buildDetailsGrid = async function(data) {
+  let detailsGrid 
+  if (data){
+    detailsGrid = '<div id="details-display">'
+    detailsGrid += `<h1 id="details-title">${data.inv_year} ${data.inv_make} ${data.inv_model}<h1/>`
+    detailsGrid += `<img id="details-img" src="${data.inv_image}" alt="${data.inv_make} ${data.inv_model} ${data.inv_year}"/>`
+    detailsGrid += '<span id="details-price">$' 
+      + new Intl.NumberFormat('en-US').format(data.inv_price) + '</span>'
+    detailsGrid += `<p id="details-description">${data.inv_description}</p>`
+    detailsGrid += `<h2 id="details-miles">${data.inv_miles} Miles</h2>`
+    detailsGrid += `<h2 id="details-color">${data.inv_color}</h2>`
+  }
+  return detailsGrid
+}
 
 /* ****************************************
  * Middleware For Handling Errors
