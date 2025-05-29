@@ -1,0 +1,23 @@
+<% if (title) { %>
+<h1 id="register-title"><%= title %></h1>
+<%  } else {
+res.redirect('/')
+ } %>
+
+ <%- messages() %>
+ 
+<form id="register-form" action="/account/register" method="post">
+    <h2 id="register-message">All the fields are required</h2>
+    <label class="form-label">First name</label>
+    <input required class="form-input" id="account_firstname" name="account_firstname" type="text">
+    <label class="form-label">Last name</label>
+    <input required class="form-input" id="account_lastname" name="account_lastname" type="text">
+    <label class="form-label">Email address</label>
+    <input required class="form-input" id="account_email" name="account_email" type="email">
+    <label class="form-label">Password</label>
+    <input required class="form-input" id="account_password" type="password" name="account_password">
+    <!-- <span id="passwordButton">Show Password</span> -->
+    <input  type="submit" value="Register" id="submit-register">
+</form>
+
+<!-- <script src="/public/js/script.js"></script> -->

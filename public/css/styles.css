@@ -55,6 +55,139 @@ body{
   margin-top: 1%;
 }
 
+.notice{
+  color: red;
+}
+
+#login-title{
+  text-align: center;
+  font-size: 2rem;
+}
+
+#register-title{
+  text-align: center;
+  font-size: 2rem;
+}
+
+#register-message{
+  text-align: left;
+}
+
+#login{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5rem;
+  margin: 0 auto;
+  background-color:coral;
+  border-radius: 1rem;
+}
+
+#register-form{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5rem;
+  margin: 0 auto;
+  background-color:coral;
+  border-radius: 1rem;
+}
+
+.form-label{
+width: 90%;
+text-align: left;
+padding: .5rem;
+margin: .5rem;
+font-size: 1.5rem;
+}
+
+.form-input{
+width: 90%;
+text-align: left;
+padding: .5rem;
+margin: .5rem;
+font-size: 1.5rem;
+border-radius: 1rem;
+
+}
+
+#submit{
+width: 40%;
+text-align: center;
+padding: .5rem;
+margin: .5rem;
+border-radius: 1rem;
+background-color:#646cff;
+color: darkblue;
+font-size: 1.5rem;
+border: 1px solid transparent;
+transition: border-color 0.25s;
+transition: ease-in-out 1s;
+}
+
+#submit:hover{
+  border-color:gold;
+  transform: scale(120%);
+  background-color:blue;
+  color:crimson;
+  border-radius: 50%;
+}
+
+#submit-register{
+  width: 40%;
+  text-align: center;
+  padding: .5rem;
+  margin: .5rem;
+  border-radius: 1rem;
+  background-color:#646cff;
+  color: darkblue;
+  font-size: 1.5rem;
+  border: 1px solid transparent;
+  transition: border-color 0.25s;
+  transition: ease-in-out 1s;
+}
+
+#submit-register:hover{
+  border-color:gold;
+  transform: scale(120%);
+  background-color:blue;
+  color:crimson;
+  border-radius: 50%;
+}
+
+
+#register{
+width: 80%;
+text-align: center;
+padding: .5rem;
+margin: .5rem;
+font-size: 1rem;
+transition: ease-in-out 1s;
+}
+
+#register:hover{
+  transform: scale(1.2);
+}
+
+.form-input:invalid {
+  border: 2px dashed red;
+}
+
+.form-input:valid {
+  border: 2px solid black;
+}
+
+#passwordButton{
+  padding: .5rem;
+  margin: .5rem;
+  background-color: bisque;
+  border: solid black 2px;
+  font-weight: bold;
+  z-index: 2;
+}
+
 .navigation{
   display: flex;
   width: 100%;
