@@ -8,9 +8,10 @@ res.redirect('/')
  
 <form id="login" name="login">
     <label class="form-label">Email</label>
-    <input required class="form-input" id="account_email" name="account_email" type="email">
+    <input required placeholder="Enter a valid email address" class="form-input" id="account_email" name="account_email" type="email">
     <label class="form-label">Password</label>
-    <input required class="form-input" id="account_password" type="password" name="account_password">
+    <span id="password-requirements">There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</span>
+    <input pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" required class="form-input" id="account_password" type="password" name="account_password">
     <!-- <span id="passwordButton">Show Password</span> -->
     <input  type="submit" value="login" id="submit">
     <a id="register" href="/account/register">No account? sing up</a>

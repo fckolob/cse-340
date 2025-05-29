@@ -5,18 +5,28 @@ res.redirect('/')
  } %>
 
  <%- messages() %>
+
+ <% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
  
 <form id="register-form" action="/account/register" method="post">
     <h2 id="register-message">All the fields are required</h2>
-    <label class="form-label">First name</label>
+    <label for="account_firstname" class="form-label">First name</label>
     <input required class="form-input" id="account_firstname" name="account_firstname" type="text">
-    <label class="form-label">Last name</label>
+    <label for="account_lastname" class="form-label">Last name</label>
     <input required class="form-input" id="account_lastname" name="account_lastname" type="text">
-    <label class="form-label">Email address</label>
-    <input required class="form-input" id="account_email" name="account_email" type="email">
-    <label class="form-label">Password</label>
-    <input required class="form-input" id="account_password" type="password" name="account_password">
+    <label for="account_email" class="form-label">Email address</label>
+    <input required placeholder="Enter a valid email address" class="form-input" id="account_email" name="account_email" type="email">
+    <label for="account_password" class="form-label">Password</label>
+    <span id="password-requirements">There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</span>
+    <input required class="form-input" id="account_password" type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" name="account_password">
     <!-- <span id="passwordButton">Show Password</span> -->
+     
     <input  type="submit" value="Register" id="submit-register">
 </form>
 
