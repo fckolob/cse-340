@@ -15,10 +15,12 @@ invCont.buildByClassificationId = async function (req, res, next) {
   res.render("./inventory/classification", {
     title: className + " vehicles",
     nav,
-    grid
-    //errors: null
+    grid,
+    errors: null
   })
 }
+
+// Build details view by inventory id.
 
 invCont.buildDetailsByInvId = async function (req, res, next) {
   const inv_id = req.params.vehicleId
@@ -30,8 +32,21 @@ invCont.buildDetailsByInvId = async function (req, res, next) {
   res.render("./inventory/vehicle", {
     title: vehicleName,
     nav,
-    grid
-    //errors: null
+    grid,
+    errors: null
+  })
+}
+
+// Build management view
+
+invCont.buildManagement = async function(req, res, next){
+  let nav = await utilities.getNav() 
+  const title = "Vehicle Management"
+
+  res.render("./inventory/management", {
+    title: title,
+    nav,
+    errors: null
   })
 }
 
