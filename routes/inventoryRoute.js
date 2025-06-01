@@ -2,6 +2,7 @@
 const express = require("express")
 const router = new express.Router()
 const utilities = require("../utilities/")
+const classificationValidation = require("../utilities/classification-validation")
 
 
 const invController = require("../controllers/invController")
@@ -11,6 +12,23 @@ router.get("/type/:classificationId", utilities.handleErrors(invController.build
 router.get("/detail/:vehicleId", utilities.handleErrors(invController.buildDetailsByInvId))
 // Route to build the vehicle management
 router.get("/", utilities.handleErrors(invController.buildManagement))
+
+//route to build the add classification
+router.get("/add-classification", utilities.handleErrors(invController.buildAddClassification))
+
+// Route to build the add inventory
+router.get("/add-inventory", utilities.handleErrors(invController.buildAddInventory))
+// Route to add a new classification
+
+router.post(
+  "/add-classification",
+  classificationValidation.registationRules(),
+  classificationValidation.checkClassificationData,
+  utilities.handleErrors(invController.addClassification)
+)
+
+// Route to add a new vehicle to the inventory
+
 
 
 module.exports = router;

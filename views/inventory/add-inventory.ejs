@@ -1,0 +1,39 @@
+<% if (title) { %>
+<h1 class="form-title-h1" id="add-inventory-title"><%= title %></h1>
+<%  } else {
+res.redirect('/')
+ } %>
+
+ <%- messages() %>
+
+ <% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<form id="add-inventory-form" name="add-classification-form" action="/inv/add-inventory" method="post">
+    <%- classificationList %>
+    <label class="form-label" for="inv_make">Make</label>
+    <input class="form-input" value="<%= locals.inv_make %>" name="inv_make" id="inv_make" required type="text">
+    <label class="form-label" for="inv_model">Model</label>
+    <input value="<%= locals.inv_model %>" class="form-input" name="inv_model" id="inv_model" required  type="text">
+    <label class="form-label" for="inv_year">Year</label>
+    <input value="<%= locals.inv_year %>" class="form-input" name="inv_year" id="inv_year" required  type="number">
+    <label class="form-label" for="inv_description">Description</label>
+    <input value="<%= locals.inv_description %>" class="form-input" name="inv_description" id="inv_description" required type="text">
+    <label class="form-label" for="inv_image">Image url</label>
+    <input value="<%= locals.inv_image %>" class="form-input" name="inv_image" required type="text">
+    <label class="form-label" for="inv_thumbnail">Thumbnail image url</label>
+    <input value="<%= locals.inv_thumbnail %>" class="form-input" name="inv_thumbnail" id="inv_thumbnail" required type="text">
+    <label class="form-label" for="inv_price">Price</label>
+    <input value="<%= locals.inv_price %>" class="form-input" name="inv_price" id="inv_price" required  type="number" min="1" step="any">
+    <label class="form-label" for="inv_miles">Miles</label>
+    <input value="<%= locals.inv_miles %>" class="form-input" name="inv_miles" id="inv_miles" required type="text">
+    <label class="form-label" for="inv_color">Color</label>
+    <input value="<%= locals.inv_color %>" class="form-input" name="inv_color" id="inv_color" required type="text">
+    <input id="add-inventory" value="Add Vehicle" type="submit">
+</form>
+
