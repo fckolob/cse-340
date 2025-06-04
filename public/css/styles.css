@@ -73,6 +73,35 @@ body{
   text-align: left;
 }
 
+#management-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.management-a{
+  width: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 1rem;
+  background-color: black;
+  color: aliceblue;
+  font-weight:bold;
+  border-radius: 1rem;
+  transition: ease-in-out 1s;
+}
+
+.management-a:hover{
+  transform: scale(1.2);
+  color:gold;
+}
+
+#management-title{
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
 #login{
   width: 90%;
   display: flex;
@@ -122,7 +151,7 @@ width: 90%;
 text-align: left;
 padding: .5rem;
 margin: .5rem;
-font-size: 1.5rem;
+font-size: 1rem;
 }
 
 .form-input{
@@ -130,7 +159,7 @@ width: 90%;
 text-align: left;
 padding: .5rem;
 margin: .5rem;
-font-size: 1.5rem;
+font-size: 1rem;
 border-radius: 1rem;
 
 }
@@ -187,7 +216,7 @@ transition: ease-in-out 1s;
   border-radius: 1rem;
   background-color:#646cff;
   color: darkblue;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border: 1px solid transparent;
   transition: border-color 0.25s;
   transition: ease-in-out 1s;
@@ -209,7 +238,7 @@ transition: ease-in-out 1s;
   border-radius: 1rem;
   background-color:#646cff;
   color: darkblue;
-  font-size: 1.5rem;
+  font-size: 1rem;
   border: 1px solid transparent;
   transition: border-color 0.25s;
   transition: ease-in-out 1s;
@@ -579,6 +608,21 @@ input:required:valid {
       font-size: 1.5rem;
     }
 
+    #add-inventory{
+      font-size: 1.5rem;
+    }
+
+    #add-classification{
+      font-size: 1.5rem;
+    }
+
+    .form-input{
+      font-size: 1.5rem;
+    }
+
+    .form-label{
+      font-size: 1.5rem;
+    }
 
     #site-title-container{
       left:110px;

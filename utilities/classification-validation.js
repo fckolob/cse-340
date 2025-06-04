@@ -1,6 +1,6 @@
 const utilities = require(".")
 const { body, validationResult } = require("express-validator")
-const accountModel = require("../models/inventory-model")
+const inventoryModel = require("../models/inventory-model")
 const validate = {}
 
  validate.registationRules = () => {
@@ -11,7 +11,12 @@ const validate = {}
         .isLength({ min: 1 })
         .isAlpha()
         .withMessage("Please provide a valid classification name.")
-
+        .custom(async (classification_name) => {
+          const classificationExists = await inventoryModel.checkExistingClassification(classification_name)
+          if (classificationExists){
+          throw new Error("Classification already exists.")
+          }
+          })
 
         
  }

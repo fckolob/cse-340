@@ -3,6 +3,7 @@ const express = require("express")
 const router = new express.Router()
 const utilities = require("../utilities/")
 const classificationValidation = require("../utilities/classification-validation")
+const inventoryValidation = require("../utilities/inventory-validation")
 
 
 const invController = require("../controllers/invController")
@@ -29,6 +30,11 @@ router.post(
 
 // Route to add a new vehicle to the inventory
 
-
+router.post(
+  "/add-inventory",
+  inventoryValidation.registationRules(),
+  inventoryValidation.checkInventoryData,
+  utilities.handleErrors(invController.addInventory)
+)
 
 module.exports = router;
