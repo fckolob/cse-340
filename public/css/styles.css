@@ -102,6 +102,64 @@ body{
   margin-bottom: 2rem;
 }
 
+#inv-management-h2{
+  width: 90%;
+  text-align: center;
+  font-size: 1.3rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  margin:0 auto;
+}
+
+#inv-management-p{
+  width: 90%;
+  text-align: center;
+  font-size: 1.3rem;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  margin: 0 auto;
+}
+
+#inv-management-select-container{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 0 auto;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+#inventoryDisplay{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  margin: 0 auto;
+  background-color:white;
+  border-radius: 1rem;
+}
+
+.table-heading{
+  width: 90%;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+  font-size: 1.1rem;
+}
+.table-row{
+  width: 90%;
+  padding-top: .5rem;
+  padding-bottom: .5rem;
+}
+
+.table-cell{
+  width: 90%;
+  padding: 1rem;
+  font-size: 1.1rem;
+}
+
 #login{
   width: 90%;
   display: flex;
@@ -298,6 +356,8 @@ input:required:valid {
 .navigation-ul{
   width: 100%;
   display: flex;
+  flex-direction: row;
+  flex-wrap: wrap ;
   justify-content: space-around;
   align-items:center;
   margin: 0 auto;
@@ -308,6 +368,7 @@ input:required:valid {
 }
 
 .navigation-li{
+  flex: 1 250px;
   width: 100%;
   margin: 0 auto;
   text-align: center;
