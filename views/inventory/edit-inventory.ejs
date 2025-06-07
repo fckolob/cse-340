@@ -1,0 +1,44 @@
+<% if (title) { %>
+<h1 class="form-title-h1" id="edit-inventory-title"><%= title %></h1>
+<%  } else {
+res.redirect('/')
+ } %>
+
+ <%- messages() %>
+
+ <% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+
+<form id="edit-inventory-form" name="edit-inventory-form" action="/inv/update" method="post">
+    <label class="form-label" for="classificationSelect">Classification</label>
+    <%- typeof classificationSelect  !== 'undefined' ? classificationSelect : '' %>
+    <label class="form-label" for="inv_make">Make</label>
+    <input minlength="3" class="form-input" placeholder="Min of 3 characters" value="<%= inv_make || '' %>" name="inv_make" id="inv_make" required type="text">
+    <label class="form-label" for="inv_model">Model</label>
+    <input minlength="3" placeholder="Min of 3 characters" value="<%= inv_model || '' %>" class="form-input" name="inv_model" id="inv_model" required  type="text">
+    <label class="form-label" for="inv_year">Year</label>
+    <input placeholder="4-digit year" value="<%= inv_year || '' %>" class="form-input" name="inv_year" id="inv_year" required pattern="^\d{4}$"  type="text">
+    <label class="form-label" for="inv_description">Description</label>
+    <input value="<%= inv_description || '' %>" class="form-input" name="inv_description" id="inv_description" required type="text">
+    <label class="form-label" for="inv_image">Image path</label>
+    <input pattern="^[a-z0-9]([a-z0-9-]*[a-z0-9])?(/[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$" value="<%= inv_image || '' %>" class="form-input" name="inv_image" required type="text">
+    <label class="form-label" for="inv_thumbnail">Thumbnail path</label>
+    <input pattern="^[a-z0-9]([a-z0-9-]*[a-z0-9])?(/[a-z0-9]([a-z0-9-]*[a-z0-9])?)*$" value="<%= inv_thumbnail || '' %>" class="form-input" name="inv_thumbnail" id="inv_thumbnail" required type="text">
+    <label class="form-label" for="inv_price">Price</label>
+    <input pattern="/^[+]?([0-9]+(?:[\.][0-9]*)?|\.[0-9]+)$/" placeholder="Decimal or Integer" value="<%= inv_price || '' %>" class="form-input" name="inv_price" id="inv_price" required  type="number" min="1" step="any">
+    <label class="form-label" for="inv_miles">Miles</label>
+    <input pattern="^(0|\+?[1-9]\d*)$" placeholder="Digits only" value="<%= inv_miles || '' %>" class="form-input" name="inv_miles" id="inv_miles" required type="text">
+    <label class="form-label" for="inv_color">Color</label>
+    <input value="<%= inv_color || '' %>" class="form-input" name="inv_color" id="inv_color" required type="text" pattern="[a-zA-Z]+">
+    <input  disabled  id="update-inventory" value="Update Vehicle" type="submit">
+    <input type="hidden" name="inv_id"
+    <% if(locals.inv_id) { %> value="<%= locals.inv_id %>"
+    <% } %>>
+</form>
+
+<script src="../../js/inv-update.js" ></script>

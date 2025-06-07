@@ -41,4 +41,21 @@ router.post(
 
 router.get("/getInventory/:classification_id", utilities.handleErrors(invController.getInventoryJSON))
 
+// Route to get the inventory edit view by inv_id
+
+router.get("/edit/:inv_id", utilities.handleErrors(invController.editInventoryView))
+
+// Route to process the inventory update
+
+router.post("/update/", inventoryValidation.newInventoryRules(), inventoryValidation.checkUpdateData, utilities.handleErrors(invController.updateInventory))
+
+// Route to get the inventory delete view by inv_id
+
+router.get("/delete/:inv_id", utilities.handleErrors(invController.buildDeleteItem))
+
+// Route to process the inventory delete
+
+router.post("/erase/", utilities.handleErrors(invController.deleteInventoryItem))
+
+
 module.exports = router;
