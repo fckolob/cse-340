@@ -1,5 +1,5 @@
 <% if (title) { %>
-  <h1 class="form-title-h1" id="register-title"><%= title %></h1>
+  <h1 id="management-title"><%= title %></h1>
 <% } %>
 
  <%- messages() %>
@@ -11,7 +11,7 @@
 <%  }) %>
  </ul>
 <% } %>
- 
+
 <form id="register-form" action="/account/register" method="post">
     <h2 id="register-message">All the fields are required</h2>
     <label for="account_firstname" class="form-label">First name</label>
@@ -27,5 +27,3 @@
      
     <input  type="submit" value="Register" id="submit-register">
 </form>
-
-<!-- <script src="/public/js/script.js"></script> -->

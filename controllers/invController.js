@@ -44,15 +44,26 @@ invCont.buildDetailsByInvId = async function (req, res, next) {
 invCont.buildManagement = async function(req, res, next){
   let nav = await utilities.getNav() 
   const title = "Vehicle Management"
-
+  const admin = res.locals.admin
   const classificationSelect = await utilities.buildClassificationList()
 
-  res.render("inventory/management", {
-    title: title,
+  if(admin){
+    res.render("inventory/management", {
+      title: title,
+      nav,
+      classificationSelect,
+      errors: null
+    })
+  }
+  else{
+    req.flash("notice", "Sorry, you are not authorized to enter to the management page.")
+    res.render("account/login", {
+    title: "Login",
     nav,
-    classificationSelect,
     errors: null
   })
+  }
+  next()
 }
 
 // Build add classification view

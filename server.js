@@ -18,6 +18,7 @@ const pool = require('./database/')
 const accountRoute = require("./routes/accountRoute")
 const bodyParser = require("body-parser")
 const cookieParser = require("cookie-parser")
+const jwt = require("jsonwebtoken")
 
 /* ***********************
  * Middleware
@@ -46,6 +47,40 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
 app.use(cookieParser())
 app.use(utilities.checkJWTToken)
+
+// Update login link according to the jwt.
+
+app.use(async function(req, res, next){
+  
+  if (req.cookies && req.cookies.jwt) {
+    res.locals.loginLink = `<a class="login-link" href="/account/logout">Logout</a>`
+    res.locals.welcomeBasicLink = `<a class="login-link" href="/account/">Welcome Basic</a>`
+  } else {
+    res.locals.loginLink = `<a class="login-link" href="/account/login">My account</a>`
+    res.locals.welcomeBasicLink = ""
+  }
+  next()
+})
+
+app.use(async function(req, res, next) {
+  let admin = false
+  let jwtPayload
+   if (req.cookies && req.cookies.jwt){
+  const checkJWTToken = req.cookies.jwt
+  jwtPayload = jwt.decode(checkJWTToken, process.env.ACCESS_TOKEN_SECRET)
+  console.log(jwtPayload)
+  res.locals.jwtPayload = jwtPayload
+  if(jwtPayload.account_type === "Admin" || jwtPayload.account_type === "Employee"){
+    admin = true
+  }
+}
+
+  res.locals.admin = admin
+
+  console.log(`Admin is ${admin}`)
+  next()
+})
+
 
 /* ***********************
  * View Engine and Templates

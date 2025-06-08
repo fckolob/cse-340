@@ -1,8 +1,6 @@
 <% if (title) { %>
-<h1 id="management-title"><%= title %></h1>
-<%  } else {
-res.redirect('/')
- } %>
+  <h1 id="management-title"><%= title %></h1>
+<% } %>
 
  <%- messages() %>
 
@@ -15,5 +13,9 @@ res.redirect('/')
 <% } %>
 
 <div id="account-management-container">
+    <%- greeting %>
     <h2 id="account-manager-message">You are logged in.</h2>
+    <%- inventoryManagementLink %>
+    <a href="/account/update">Update account information</a>
 </div>
+

@@ -129,9 +129,29 @@ async function accountLogin(req, res) {
  * ************************************ */
 async function buildAccountManagement(req, res, next) {
   let nav = await utilities.getNav()
+  const admin = res.locals.admin
+  
+  
+  if(req.cookies && req.cookies.jwt){
+    const jwtPayload = res.locals.jwtPayload
+    const firstName = jwtPayload.account_firstname
+    let greeting
+    let inventoryManagementLink
+  if(admin){
+    greeting = `<h2 class="greeting">Welcome Happy ${firstName}</h2>`
+    inventoryManagementLink = `<h3>Inventory Management</h3>
+  <p><a href="/inv/">Access</a></p>`
+  }
+  else{
+    greeting = `<h2 class="greeting">Welcome ${firstName}</h2>`
+    inventoryManagementLink = ""
+  }}
+  
   res.render("account/management", {
     title: "Account Management",
     nav,
+    greeting,
+    inventoryManagementLink,
     errors: null
   })
 }
