@@ -139,8 +139,8 @@ async function buildAccountManagement(req, res, next) {
     let inventoryManagementLink
   if(admin){
     greeting = `<h2 class="greeting">Welcome Happy ${firstName}</h2>`
-    inventoryManagementLink = `<h3>Inventory Management</h3>
-  <p><a href="/inv/">Access</a></p>`
+    inventoryManagementLink = `<h3 id="inventory-management-link-h3">Inventory Management</h3>
+  <p id="inventory-management-link-p"><a id="inventory-management-link-a" href="/inv/">Access</a></p>`
 
   res.render("account/management", {
     title: "Account Management",
@@ -281,6 +281,17 @@ async function accountUpdatePassword(req, res, next) {
 }
 
 
+// Logout process
+
+async function logout(req, res, next) {
+   if(req.cookies && req.cookies.jwt){
+    res.clearCookie("jwt")
+    req.flash("notice", "You are logged out")
+    res.redirect("/")
+   }
+   
+   res.redirect("/")
+}
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdate,accountUpdateAccount, accountUpdatePassword}
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdate,accountUpdateAccount, accountUpdatePassword, logout}

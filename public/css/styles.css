@@ -196,6 +196,7 @@ body{
   margin: 0 auto;
   background-color:coral;
   border-radius: 1rem;
+  margin-bottom: 1rem;
 }
 
 #update-password-form{
@@ -207,6 +208,54 @@ body{
   margin: 0 auto;
   background-color:coral;
   border-radius: 1rem;
+}
+
+.greeting{
+  text-align: center;
+  margin:0 auto;
+  padding: 1rem;
+}
+
+.login-link{
+  font-size: .6rem;
+}
+
+#inventory-management-link-h3{
+  text-align: center;
+  margin:0 auto;
+  padding: 1rem;
+}
+
+#inventory-management-link-p{
+  text-align: center;
+  margin:0 auto;
+  padding: 1rem;
+}
+
+#inventory-management-link-a{
+  text-align: center;
+  margin:0 auto;
+  padding: 1rem;
+}
+
+#account-manager-container{
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+#account-manager-message{
+  text-align: center;
+  margin:0 auto;
+  padding: 1rem;
+}
+
+#update-account-link{
+  display: block;
+  text-align: center;
+  margin: 1rem auto;
+  padding: 1rem;
+  width: 90%;
 }
 
 #add-classification-form{
@@ -844,6 +893,11 @@ input:required:valid {
 
     #site-title{
       font-size: 2.5rem;
+    }
+
+    .login-link{
+      font-size: 1.2rem;
+      padding: .5rem;
     }
 
     #main-container{
