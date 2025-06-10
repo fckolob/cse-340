@@ -68,7 +68,7 @@ app.use(async function(req, res, next) {
    if (req.cookies && req.cookies.jwt){
   const checkJWTToken = req.cookies.jwt
   jwtPayload = jwt.decode(checkJWTToken, process.env.ACCESS_TOKEN_SECRET)
-  console.log(jwtPayload)
+  
   res.locals.jwtPayload = jwtPayload
   if(jwtPayload.account_type === "Admin" || jwtPayload.account_type === "Employee"){
     admin = true
@@ -79,7 +79,7 @@ app.use(async function(req, res, next) {
   res.locals.admin = admin
   
 
-  console.log(`Admin is ${admin}`)
+  
   next()
 })
 
