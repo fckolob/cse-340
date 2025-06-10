@@ -187,6 +187,28 @@ body{
   border-radius: 1rem;
 }
 
+#update-account-form{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5rem;
+  margin: 0 auto;
+  background-color:coral;
+  border-radius: 1rem;
+}
+
+#update-password-form{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5rem;
+  margin: 0 auto;
+  background-color:coral;
+  border-radius: 1rem;
+}
+
 #add-classification-form{
   width: 90%;
   display: flex;
@@ -293,6 +315,50 @@ transition: ease-in-out 1s;
 }
 
 #submit-register:hover{
+  border-color:gold;
+  transform: scale(120%);
+  background-color:blue;
+  color:crimson;
+  border-radius: 50%;
+}
+
+#submit-account-update{
+  width: 40%;
+  text-align: center;
+  padding: .5rem;
+  margin: .5rem;
+  border-radius: 1rem;
+  background-color:#646cff;
+  color: darkblue;
+  font-size: 1.5rem;
+  border: 1px solid transparent;
+  transition: border-color 0.25s;
+  transition: ease-in-out 1s;
+}
+
+#submit-account-update:hover{
+  border-color:gold;
+  transform: scale(120%);
+  background-color:blue;
+  color:crimson;
+  border-radius: 50%;
+}
+
+#submit-account-password-update{
+  width: 40%;
+  text-align: center;
+  padding: .5rem;
+  margin: .5rem;
+  border-radius: 1rem;
+  background-color:#646cff;
+  color: darkblue;
+  font-size: 1.5rem;
+  border: 1px solid transparent;
+  transition: border-color 0.25s;
+  transition: ease-in-out 1s;
+}
+
+#submit-account-password-update:hover{
   border-color:gold;
   transform: scale(120%);
   background-color:blue;

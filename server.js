@@ -72,10 +72,12 @@ app.use(async function(req, res, next) {
   res.locals.jwtPayload = jwtPayload
   if(jwtPayload.account_type === "Admin" || jwtPayload.account_type === "Employee"){
     admin = true
+    res.locals.welcomeBasicLink = `<a class="login-link" href="/account/">Welcome Happy</a>`
   }
 }
 
   res.locals.admin = admin
+  
 
   console.log(`Admin is ${admin}`)
   next()

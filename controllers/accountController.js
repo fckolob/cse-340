@@ -141,19 +141,146 @@ async function buildAccountManagement(req, res, next) {
     greeting = `<h2 class="greeting">Welcome Happy ${firstName}</h2>`
     inventoryManagementLink = `<h3>Inventory Management</h3>
   <p><a href="/inv/">Access</a></p>`
-  }
-  else{
-    greeting = `<h2 class="greeting">Welcome ${firstName}</h2>`
-    inventoryManagementLink = ""
-  }}
-  
+
   res.render("account/management", {
     title: "Account Management",
     nav,
     greeting,
     inventoryManagementLink,
     errors: null
+    })
+  }
+  else{
+    greeting = `<h2 class="greeting">Welcome ${firstName}</h2>`
+    inventoryManagementLink = ""
+
+    res.render("account/management", {
+    title: "Account Management",
+    nav,
+    greeting,
+    inventoryManagementLink,
+    errors: null
   })
+
+  }}
+  
+ 
 }
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement}
+
+/* ****************************************
+ *  Build the account update view
+ * ************************************ */
+async function buildAccountUpdate(req, res, next) {
+  let nav = await utilities.getNav()
+  if(req.cookies && req.cookies.jwt){
+    const jwtPayload = res.locals.jwtPayload
+    const account_id = parseInt(jwtPayload.account_id)
+    const accountData = await accountModel.getAccountById(account_id)
+   res.render("account/update", {
+    title: "Account Update",
+    nav,
+    errors: null,
+    account_firstname: accountData.account_firstname,
+    account_lastname: accountData.account_lastname,
+    account_email: accountData.account_email,
+    account_id: account_id
+    })}
+}
+
+
+/* ***************************
+ *  Update Account Data
+ * ************************** */
+async function accountUpdateAccount(req, res, next) {
+  let nav = await utilities.getNav()
+  const {
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id
+  } = req.body
+  const updateResult = await accountModel.updateAccountAccount(
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id
+  )
+
+  if (updateResult) {
+    const firstName = updateResult.account_firstname
+    req.flash("notice", `${firstName}, your account was successfully updated.`)
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the account update failed.")
+    res.status(501).render("account/update", {
+    title: "Update Account",
+    nav,
+    errors: null,
+    account_firstname: account_firstname,
+    account_lastname: account_lastname,
+    account_email: account_email,
+    account_id: account_id
+    })
+  }
+}
+
+/* ***************************
+ *  Update Account Password
+ * ************************** */
+
+async function accountUpdatePassword(req, res, next) {
+  let nav = await utilities.getNav()
+  const {
+    account_firstname,
+    account_lastname,
+    account_email,
+    account_id, 
+    account_password
+  } = req.body
+
+  // Hash the password before storing
+  let hashedPassword
+  try {
+    // regular password and cost (salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10)
+  } catch (error) {
+    req.flash("notice", 'Sorry, there was an error processing the account update.')
+    res.status(500).render("account/update", {
+      title: "Update Account",
+      nav,
+      account_firstname: account_firstname,
+      account_lastname: account_lastname,
+      account_email: account_email,
+      account_id: account_id,
+      errors: null,
+    })
+  }
+
+
+  const updateResult = await accountModel.updateAccountPassword(
+  account_id, hashedPassword
+  )
+
+  if (updateResult) {
+    const firstNamex = updateResult.account_firstname
+    req.flash("notice", `${firstNamex}, your password was successfully updated.`)
+    res.redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the password update failed.")
+    res.status(501).render("account/update", {
+    title: "Update Account",
+    nav,
+    errors: null,
+    account_firstname: account_firstname,
+    account_lastname: account_lastname,
+    account_email: account_email,
+    account_id: account_id
+    })
+  }
+}
+
+
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdate,accountUpdateAccount, accountUpdatePassword}

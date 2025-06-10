@@ -4,6 +4,7 @@ const router = new express.Router()
 const utilities = require("../utilities/")
 const accountController = require("../controllers/accountController")
 const regValidate = require('../utilities/account-validation')
+const bodyParser = require("body-parser")
 
 // Route to build the login view
 
@@ -30,6 +31,22 @@ router.post(
   utilities.handleErrors(accountController.accountLogin)
 )
 
+// Deliver the Account Management View.
+
 router.get("/", utilities.handleErrors(accountController.buildAccountManagement))
+
+// Deliver the Account and Password Update View.
+
+router.get("/update", utilities.handleErrors(accountController.buildAccountUpdate))
+
+// Process the Account Update.
+
+router.post("/update1", 
+  regValidate.updateAccountRules(), regValidate.checkUpdateAccountData,  utilities.handleErrors(accountController.accountUpdateAccount))
+
+// Process the Password Update.
+
+router.post("/update2", regValidate.updatePasswordRules(), utilities.handleErrors(accountController.accountUpdatePassword))
+
 
 module.exports = router;
