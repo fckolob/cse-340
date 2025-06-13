@@ -30,8 +30,10 @@
     <label for="account_password" class="form-label">Password</label>
     <span class="requierement-message" id="password-requirements">To enter a new password will change the old password for the new one. There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</span>
     <input required class="form-input" id="account_password" type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" name="account_password">
-    <!-- <span id="passwordButton">Show Password</span> -->
+    <span class="form-input" id="passwordButton">Show Password</span>
     <input type="hidden" name="account_id"
     value="<%= locals.account_id || "" %>">
     <input  type="submit" value="Update Password" id="submit-account-password-update">
   </form>
+
+  <script src="../../js/script.js"></script>

@@ -309,7 +309,7 @@ async function buildAddEmployee(req, res, next) {
     errors: null
   })}
   else{
-    res.flash("notice", "Access denied")
+    req.flash("notice", "Access denied")
     res.redirect("/")
   }
 }

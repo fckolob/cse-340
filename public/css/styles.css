@@ -609,6 +609,23 @@ input:required:valid {
   z-index: 2;
 }
 
+#passwordButton:hover{
+  cursor: pointer;
+}
+
+#passwordAdminButton{
+  padding: .5rem;
+  margin: .5rem;
+  background-color: bisque;
+  border: solid black 2px;
+  font-weight: bold;
+  z-index: 2;
+}
+
+#passwordAdminButton:hover{
+  cursor: pointer;
+}
+
 .navigation{
   display: flex;
   width: 100%;
