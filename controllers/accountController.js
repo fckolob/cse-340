@@ -130,7 +130,8 @@ async function accountLogin(req, res) {
 async function buildAccountManagement(req, res, next) {
   let nav = await utilities.getNav()
   const admin = res.locals.admin
-  
+  const adminAdmin = res.locals.adminAdmin
+  let addEmployeeLink = ""
   
   if(req.cookies && req.cookies.jwt){
     const jwtPayload = res.locals.jwtPayload
@@ -141,12 +142,14 @@ async function buildAccountManagement(req, res, next) {
     greeting = `<h2 class="greeting">Welcome Happy ${firstName}</h2>`
     inventoryManagementLink = `<h3 id="inventory-management-link-h3">Inventory Management</h3>
   <p id="inventory-management-link-p"><a id="inventory-management-link-a" href="/inv/">Access</a></p>`
-
+  if(adminAdmin){
+    addEmployeeLink = `<a id="addEmployeeLink" href="/account/add-employee">Add a New Employee</a>`}
   res.render("account/management", {
     title: "Account Management",
     nav,
     greeting,
     inventoryManagementLink,
+    addEmployeeLink,
     errors: null
     })
   }
@@ -159,6 +162,7 @@ async function buildAccountManagement(req, res, next) {
     nav,
     greeting,
     inventoryManagementLink,
+    addEmployeeLink,
     errors: null
   })
 
@@ -293,5 +297,111 @@ async function logout(req, res, next) {
    res.redirect("/")
 }
 
+// Build add-employee view
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdate,accountUpdateAccount, accountUpdatePassword, logout}
+async function buildAddEmployee(req, res, next) {
+  let nav = await utilities.getNav()
+  let adminAdmin = res.locals.adminAdmin
+  if(adminAdmin){
+  res.render("account/add-employee", {
+    title: "Add a New Employee",
+    nav,
+    errors: null
+  })}
+  else{
+    res.flash("notice", "Access denied")
+    res.redirect("/")
+  }
+}
+
+
+
+/* ****************************************
+*  Process add a new employee.
+* *************************************** */
+async function processAddEmployee(req, res) {
+  let nav = await utilities.getNav()
+  const { account_firstname, account_lastname, account_email, account_password, admin_account_password } = req.body
+  let jwtPayload = res.locals.jwtPayload
+  let adminEmail = jwtPayload.account_email
+  let account_type = "Employee"
+  const accountData = await accountModel.getAccountByEmail(adminEmail)
+  if (!accountData) {
+    req.flash("notice", "Something Failed, please try again")
+    res.status(400).render("account/add-employee", {
+      title: "Add a New Employee",
+      nav,
+      account_firstname: account_firstname,
+      account_lastname: account_lastname,
+      account_email: account_email,
+      errors: null,
+      account_email,
+    })
+    return
+  }
+
+    if (await bcrypt.compare(admin_account_password, accountData.account_password)) {
+      
+      
+
+
+// Hash the password before storing
+  let hashedPassword
+  try {
+    // regular password and cost (salt is generated automatically)
+    hashedPassword = await bcrypt.hashSync(account_password, 10)
+  } catch (error) {
+    req.flash("notice", 'Sorry, there was an error processing the employee addition.')
+    res.status(500).render("account/add-employee", {
+      title: "Add a New Employee",
+      nav,
+      account_firstname: account_firstname,
+      account_lastname: account_lastname,
+      account_email: account_email,
+      errors: null,
+    })
+  }
+
+
+
+  const regResult = await accountModel.addEmployee(
+    account_firstname,
+    account_lastname,
+    account_email,
+    hashedPassword,
+    account_type
+  )
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, your employee ${account_firstname} ${account_lastname} was added.`
+    )
+    res.status(201).redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the employee addition failed.")
+    res.status(501).render("account/add-employee",
+    {
+      title: "Add a New Employee",
+      nav,
+      account_firstname: account_firstname,
+      account_lastname: account_lastname, 
+      account_email: account_email,
+      errors: null
+    })
+  }
+}
+else{
+  req.flash("notice", "The Admin Password is Wrong, check and try again")
+  res.render("account/add-employee", {
+    title: "Add a New Employee",
+      nav,
+      account_firstname: account_firstname,
+      account_lastname: account_lastname, 
+      account_email: account_email,
+      errors: null
+  })
+}}
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdate,accountUpdateAccount, accountUpdatePassword, logout, buildAddEmployee, processAddEmployee}

@@ -93,5 +93,17 @@ async function updateAccountPassword(account_id, account_password
   }
 }
 
+/* *****************************
+*   Register new account
+* *************************** */
+async function addEmployee(account_firstname, account_lastname, account_email, account_password, account_type){
+  try {
+    const sql = "INSERT INTO account (account_firstname, account_lastname, account_email, account_password, account_type) VALUES ($1, $2, $3, $4, $5) RETURNING *"
+    return await pool.query(sql, [account_firstname, account_lastname, account_email, account_password, account_type])
+  } catch (error) {
+    return error.message
+  }
+}
 
-module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccountAccount, updateAccountPassword}
+
+module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccountAccount, updateAccountPassword, addEmployee}

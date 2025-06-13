@@ -12,7 +12,7 @@
  </ul>
 <% } %>
  
-<form id="register-form" action="/account/register" method="post">
+<form id="add-employee-form" action="/account/add-employee" method="post">
     <h2 id="register-message">All the fields are required</h2>
     <label for="account_firstname" class="form-label">First name</label>
     <input required placeholder="Min 3 characters (Alphabetic)" pattern="^[A-Za-z]{3,}$" value="<%= locals.account_firstname %>" class="form-input" id="account_firstname" name="account_firstname" type="text">
@@ -24,8 +24,12 @@
     <span class="requierement-message" id="password-requirements">There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</span>
     <input required class="form-input" id="account_password" type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" name="account_password">
     <!-- <span id="passwordButton">Show Password</span> -->
-     
-    <input  type="submit" value="Register" id="submit-register">
+     <label for="admin_account_password" class="form-label">Admin Password</label>
+    <span class="requierement-message" id="password-requirements">There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</span>
+    <input required class="form-input" id="admin_account_password" type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" name="admin_account_password">
+    <!-- <span id="passwordButton">Show Password</span> -->
+    <input  type="submit" value="Add Employee" id="submit-register">
 </form>
 
 <!-- <script src="/public/js/script.js"></script> -->
+

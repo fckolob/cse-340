@@ -64,6 +64,7 @@ app.use(async function(req, res, next){
 
 app.use(async function(req, res, next) {
   let admin = false
+  let adminAdmin = false
   let jwtPayload
    if (req.cookies && req.cookies.jwt){
   const checkJWTToken = req.cookies.jwt
@@ -73,11 +74,14 @@ app.use(async function(req, res, next) {
   if(jwtPayload.account_type === "Admin" || jwtPayload.account_type === "Employee"){
     admin = true
     res.locals.welcomeBasicLink = `<a class="login-link" href="/account/">Welcome Happy</a>`
+    if(jwtPayload.account_type === "Admin"){
+      adminAdmin = true
+    }
   }
 }
 
   res.locals.admin = admin
-  
+  res.locals.adminAdmin = adminAdmin
 
   
   next()

@@ -53,5 +53,12 @@ router.post("/update2", regValidate.updatePasswordRules(), utilities.handleError
 
 router.get("/logout", utilities.handleErrors(accountController.logout))
 
+// Deliver the add-employee view
+
+router.get("/add-employee", utilities.handleErrors(accountController.buildAddEmployee))
+
+// Process add a new employee.
+
+router.post("/add-employee", regValidate.addEmployeeRules(), regValidate.checkAddEmployeeData, utilities.handleErrors(accountController.processAddEmployee))
 
 module.exports = router;

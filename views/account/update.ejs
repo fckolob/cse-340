@@ -15,9 +15,9 @@
 <form id="update-account-form" action="/account/update1" method="post">
     <h2 id="register-message">All the fields are required</h2>
     <label for="account_firstname" class="form-label">First name</label>
-    <input required value="<%= locals.account_firstname || "" %>" class="form-input" id="account_firstname" name="account_firstname" type="text">
+    <input required placeholder="Min 3 characters (Alphabetic)" pattern="^[A-Za-z]{3,}$" value="<%= locals.account_firstname || "" %>" class="form-input" id="account_firstname" name="account_firstname" type="text">
     <label for="account_lastname" class="form-label">Last name</label>
-    <input required value="<%= locals.account_lastname || "" %>" class="form-input" id="account_lastname" name="account_lastname" type="text">
+    <input required placeholder="Min 3 characters (Alphabetic)" pattern="^[A-Za-z]{3,}$" value="<%= locals.account_lastname || "" %>" class="form-input" id="account_lastname" name="account_lastname" type="text">
     <label for="account_email" class="form-label">Email address</label>
     <input required value="<%= locals.account_email || "" %>" placeholder="Enter a valid email address" class="form-input" id="account_email" name="account_email" type="email">
     <input  type="submit" value="Update Account" id="submit-account-update">

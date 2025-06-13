@@ -199,6 +199,29 @@ body{
   margin-bottom: 1rem;
 }
 
+#inventory-management-link-container{
+  width: 90%;
+  display: block;
+  
+  align-items: center;
+  padding: .5rem;
+  margin: 0 auto;
+  background-color:coral;
+  border-radius: 1rem;
+  margin-bottom: 1rem;
+}
+
+#add-employee-form{
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: .5rem;
+  margin: 0 auto;
+  background-color:coral;
+  border-radius: 1rem;
+}
+
 #update-password-form{
   width: 90%;
   display: flex;
@@ -224,18 +247,35 @@ body{
   text-align: center;
   margin:0 auto;
   padding: 1rem;
+  font-size: 2rem;
 }
 
 #inventory-management-link-p{
   text-align: center;
+  display: block;
   margin:0 auto;
-  padding: 1rem;
+  
+  margin-bottom: 1rem;
 }
 
 #inventory-management-link-a{
+  width: 60%;
+  display: block;
   text-align: center;
-  margin:0 auto;
+  font-size: 1.5rem;
   padding: 1rem;
+  margin: 0 auto;
+  background-color: black;
+  color: aliceblue;
+  font-weight:bold;
+  border-radius: 1rem;
+  transition: ease-in-out 1s;
+  margin-bottom: 1rem;
+}
+
+#inventory-management-link-a:hover{
+  transform: scale(1.2);
+  color:gold;
 }
 
 #account-manager-container{
@@ -251,11 +291,43 @@ body{
 }
 
 #update-account-link{
+  width: 50%;
   display: block;
   text-align: center;
-  margin: 1rem auto;
+  font-size: 1.5rem;
   padding: 1rem;
-  width: 90%;
+  margin: 0 auto;
+  background-color: black;
+  color: aliceblue;
+  font-weight:bold;
+  border-radius: 1rem;
+  transition: ease-in-out 1s;
+  margin-bottom: 1rem;
+}
+
+#update-account-link:hover{
+  transform: scale(1.2);
+  color:gold;
+}
+
+#addEmployeeLink{
+  width: 50%;
+  display: block;
+  text-align: center;
+  font-size: 1.5rem;
+  padding: 1rem;
+  margin: 0 auto;
+  background-color: black;
+  color: aliceblue;
+  font-weight:bold;
+  border-radius: 1rem;
+  transition: ease-in-out 1s;
+  margin-bottom: 1rem;
+}
+
+#addEmployeeLink:hover{
+  transform: scale(1.2);
+  color:gold;
 }
 
 #add-classification-form{
