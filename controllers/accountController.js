@@ -472,13 +472,13 @@ async function processRemoveEmployee(req, res) {
   const accountAdminData = await accountModel.getAccountByEmail(adminEmail)
   if (!accountAdminData) {
     req.flash("notice", "Something Failed, please try again")
-    res.status(400).render(`account/remove-confirmation/${account_id}`, {
+    res.status(400).render(`account/remove-confirmation`, {
       title: `Remove Employee: ${employeeName}`,
       nav,
-      account_firstname: account_firstname,
-      account_lastname: account_lastname,
-      account_email: account_email,
-      account_id: account_id,
+      account_firstname,
+      account_lastname,
+      account_email,
+      account_id,
       errors: null,
       
     })
@@ -504,7 +504,7 @@ async function processRemoveEmployee(req, res) {
     res.status(201).redirect("/account/")
   } else {
     req.flash("notice", "Sorry, the employee Removing failed.")
-    res.status(501).render(`account/remove-confirmation/${account_id}`,
+    res.status(501).render(`account/remove-confirmation`,
     {
       title: `Remove Employee: ${employeeName}`,
       nav,
@@ -518,7 +518,7 @@ async function processRemoveEmployee(req, res) {
 }
 else{
   req.flash("notice", "The Admin Password is Wrong, check and try again")
-  res.render(`account/remove-confirmation/${account_id}`, {
+  res.render(`account/remove-confirmation`, {
     title: `Remove Employee: ${employeeName}`,
       nav,
       account_firstname: account_firstname,
