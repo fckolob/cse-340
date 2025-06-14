@@ -208,9 +208,12 @@ validate.loginRules = () =>{
           minNumbers: 1,
           minSymbols: 1,
         })
-        .withMessage("Password does not meet requirements."),
+        .withMessage("Password does not meet requirements.")
     ]
   }
+
+
+
 
 
 

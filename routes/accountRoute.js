@@ -61,4 +61,16 @@ router.get("/add-employee", utilities.handleErrors(accountController.buildAddEmp
 
 router.post("/add-employee", regValidate.addEmployeeRules(), regValidate.checkAddEmployeeData, utilities.handleErrors(accountController.processAddEmployee))
 
+// Deliver the remove-employee view.
+
+router.get("/remove-employee", utilities.handleErrors(accountController.buildRemoveEmployee))
+
+// Deliver the remove employee confirmation view
+
+router.get("/remove-confirmation/:account_id", utilities.handleErrors(accountController.buildRemoveEmployeeConfirmation))
+
+// Process the remove employee.
+
+router.post("/erase/", utilities.handleErrors(accountController.processRemoveEmployee))
+
 module.exports = router;

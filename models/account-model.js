@@ -106,4 +106,40 @@ async function addEmployee(account_firstname, account_lastname, account_email, a
 }
 
 
-module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccountAccount, updateAccountPassword, addEmployee}
+/* *****************************
+* Return account data by account type.
+* ***************************** */
+async function getAccountDataByAccountType(account_type) {
+  try {
+    const result = await pool.query(
+      'SELECT account_id, account_firstname, account_lastname, account_email FROM account WHERE account_type = $1',
+      [account_type])
+    return result.rows || []
+  } catch (error) {
+    console.error(error)
+    return []
+  }
+}
+
+
+/* *****************************
+* Remove account by Id.
+* ***************************** */
+
+async function removeAccountbyId(
+  account_id
+) {
+  try {
+    const sql =
+      'DELETE FROM account WHERE account_id = $1'
+    const data = await pool.query(sql, [
+      account_id
+    ])
+    return data
+  } catch (error) {
+    console.error("delete account error: " + error)
+  }
+}
+
+
+module.exports = {registerAccount, checkExistingEmail, getAccountByEmail, getAccountById, updateAccountAccount, updateAccountPassword, addEmployee, getAccountDataByAccountType, removeAccountbyId}

@@ -134,4 +134,26 @@ Util.checkJWTToken = (req, res, next) => {
  }
 }
 
+
+/* ****************************************
+* Create employees table
+**************************************** */
+Util.createEmployeesTable = function(data){
+let dataTable = '<table id="inventoryDisplay">'
+dataTable += '<thead class="table-head">'; 
+ dataTable += '<tr><th class="table-heading">Employee Name</th><td>&nbsp;</td><td>&nbsp;</td></tr>'; 
+ dataTable += '</thead>'; 
+ // Set up the table body 
+ dataTable += '<tbody class="table-body">'; 
+ // Iterate over all employees in the array and put each in a row 
+ data.forEach((element) => { 
+  dataTable += `<tr class="table-row"><td class="table-cell">${element.account_firstname} ${element.account_lastname}</td>`; 
+  dataTable += `<td class="table-cell"><a href='/account/remove-confirmation/${element.account_id}' title='Click to remove'>Remove</a></td>`; 
+  dataTable += `</tr>`; 
+ }) 
+ dataTable += '</tbody>';
+ dataTable += '</table>'
+ return dataTable
+}
+
 module.exports = Util

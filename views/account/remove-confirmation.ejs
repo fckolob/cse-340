@@ -1,0 +1,33 @@
+<% if (title) { %>
+  <h1 class="form-title-h1" id="register-title"><%= title %></h1>
+<% } %>
+
+ <%- messages() %>
+
+ <% if (errors) { %>
+  <ul class="notice">
+ <% errors.array().forEach(error => { %>
+   <li><%= error.msg %></li>
+<%  }) %>
+ </ul>
+<% } %>
+ 
+<form id="remove-employee-form" action="/account/erase/" method="post">
+    <h2 id="register-message">All the fields are required</h2>
+    <label for="account_firstname" class="form-label">First name</label>
+    <input readonly required placeholder="Min 3 characters (Alphabetic)" pattern="^[A-Za-z]{3,}$" value="<%= locals.account_firstname %>" class="form-input" id="account_firstname" name="account_firstname" type="text">
+    <label for="account_lastname" class="form-label">Last name</label>
+    <input readonly required placeholder="Min 3 characters (Alphabetic)" pattern="^[A-Za-z]{3,}$" value="<%= locals.account_lastname %>" class="form-input" id="account_lastname" name="account_lastname" type="text">
+    <label for="account_email" class="form-label">Email address</label>
+    <input readonly required value="<%= locals.account_email %>" placeholder="Enter a valid email address" class="form-input" id="account_email" name="account_email" type="email">
+    
+     <label for="admin_account_password" class="form-label">Admin Password</label>
+    <span class="requierement-message" id="password-requirements">There must be at least 12 characters, one must be a number, one must be a lowercase letter, one must be a capital letter, and one must be a non-alphanumeric character.</span>
+    <input required class="form-input" id="admin_account_password" type="password" pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[^a-zA-Z0-9])(?!.*\s).{12,}$" name="admin_account_password">
+    <span class="form-input" id="passwordAdminButton">Show Password</span>
+    <input id="account_id" name="account_id" type="hidden" value="<%= locals.account_id %>">
+    <input  type="submit" value="Remove Employee" id="submit-remove-employee">
+</form>
+
+<script src="../../js/script.js"></script>
+

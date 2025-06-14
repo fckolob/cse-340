@@ -76,6 +76,7 @@ app.use(async function(req, res, next) {
     res.locals.welcomeBasicLink = `<a class="login-link" href="/account/">Welcome Happy</a>`
     if(jwtPayload.account_type === "Admin"){
       adminAdmin = true
+      console.log(`adminAdmin is ${adminAdmin}`)
     }
   }
 }

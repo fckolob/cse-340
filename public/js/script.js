@@ -1,4 +1,6 @@
 const passwordButton = document.querySelector("#passwordButton");
+
+if(passwordButton !== null){
 passwordButton.addEventListener("click", function(){
     const passwordInput = document.getElementById("account_password");
     const type = passwordInput.getAttribute("type");
@@ -10,7 +12,7 @@ passwordButton.addEventListener("click", function(){
         passwordInput.setAttribute("type", "password");
         passwordButton.innerHTML = "Show Password";
     }
-});
+});}
 
 const passwordAdminButton = document.querySelector("#passwordAdminButton");
 

@@ -3,6 +3,7 @@ const utilities = require("../utilities/")
 const accountModel = require("../models/account-model")
 const bcrypt = require("bcryptjs")
 const jwt = require("jsonwebtoken")
+const Util = require("../utilities/")
 require("dotenv").config()
 
 /* ****************************************
@@ -132,6 +133,7 @@ async function buildAccountManagement(req, res, next) {
   const admin = res.locals.admin
   const adminAdmin = res.locals.adminAdmin
   let addEmployeeLink = ""
+  let removeEmployeeLink = ""
   
   if(req.cookies && req.cookies.jwt){
     const jwtPayload = res.locals.jwtPayload
@@ -143,13 +145,16 @@ async function buildAccountManagement(req, res, next) {
     inventoryManagementLink = `<h3 id="inventory-management-link-h3">Inventory Management</h3>
   <p id="inventory-management-link-p"><a id="inventory-management-link-a" href="/inv/">Access</a></p>`
   if(adminAdmin){
-    addEmployeeLink = `<a id="addEmployeeLink" href="/account/add-employee">Add a New Employee</a>`}
+    addEmployeeLink = `<a id="addEmployeeLink" href="/account/add-employee">Add a New Employee</a>`
+    removeEmployeeLink = `<a id="removeEmployeeLink" href="/account/remove-employee">Remove a Employee</a>`
+  }
   res.render("account/management", {
     title: "Account Management",
     nav,
     greeting,
     inventoryManagementLink,
     addEmployeeLink,
+    removeEmployeeLink,
     errors: null
     })
   }
@@ -163,6 +168,7 @@ async function buildAccountManagement(req, res, next) {
     greeting,
     inventoryManagementLink,
     addEmployeeLink,
+    removeEmployeeLink,
     errors: null
   })
 
@@ -404,4 +410,127 @@ else{
 }}
 
 
-module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdate,accountUpdateAccount, accountUpdatePassword, logout, buildAddEmployee, processAddEmployee}
+// Build remove-employee view
+
+async function buildRemoveEmployee(req, res, next) {
+  let nav = await utilities.getNav()
+  let adminAdmin = res.locals.adminAdmin
+  let employeesData = await accountModel.getAccountDataByAccountType("Employee")
+  if (!Array.isArray(employeesData)) employeesData = []
+  let employeesTable = await Util.createEmployeesTable(employeesData)
+  if(adminAdmin){
+    res.render("account/remove-employee", {
+      title: "Remove Employee",
+      nav,
+      employeesTable,
+      errors: null
+    })
+  }
+  else{
+    req.flash("notice", "Access denied")
+    res.redirect("/")
+  }
+}
+
+
+
+// Build remove-employee confirmation view
+
+async function buildRemoveEmployeeConfirmation(req, res, next) {
+  let nav = await utilities.getNav()
+  let adminAdmin = res.locals.adminAdmin
+  const account_id = parseInt(req.params.account_id)
+  let employeeData = await accountModel.getAccountById(account_id)
+  
+  if(adminAdmin){
+  res.render("account/remove-confirmation", {
+    title: "Remove a Employee",
+    nav,
+    account_firstname: employeeData.account_firstname,
+    account_lastname: employeeData.account_lastname,
+    account_email: employeeData.account_email,
+    account_id: employeeData.account_id,
+    errors: null
+  })}
+  else{
+    req.flash("notice", "Access denied")
+    res.redirect("/")
+  }
+}
+
+
+/* ****************************************
+*  Process remove a employee.
+* *************************************** */
+async function processRemoveEmployee(req, res) {
+  let nav = await utilities.getNav()
+  
+  const { account_firstname, account_lastname, account_email, account_id, admin_account_password } = req.body
+  let jwtPayload = res.locals.jwtPayload
+  let adminEmail = jwtPayload.account_email
+  let employeeName = `${account_firstname} ${account_lastname}`
+  const accountAdminData = await accountModel.getAccountByEmail(adminEmail)
+  if (!accountAdminData) {
+    req.flash("notice", "Something Failed, please try again")
+    res.status(400).render(`account/remove-confirmation/${account_id}`, {
+      title: `Remove Employee: ${employeeName}`,
+      nav,
+      account_firstname: account_firstname,
+      account_lastname: account_lastname,
+      account_email: account_email,
+      account_id: account_id,
+      errors: null,
+      
+    })
+    return
+  }
+
+    if (await bcrypt.compare(admin_account_password, accountAdminData.account_password)) {
+      
+      
+
+
+
+
+
+
+  const regResult = await accountModel.removeAccountbyId(account_id)
+
+  if (regResult) {
+    req.flash(
+      "notice",
+      `Congratulations, your employee ${account_firstname} ${account_lastname} was Removed.`
+    )
+    res.status(201).redirect("/account/")
+  } else {
+    req.flash("notice", "Sorry, the employee Removing failed.")
+    res.status(501).render(`account/remove-confirmation/${account_id}`,
+    {
+      title: `Remove Employee: ${employeeName}`,
+      nav,
+      account_firstname: account_firstname,
+      account_lastname: account_lastname, 
+      account_email: account_email,
+      account_id: account_id,
+      errors: null
+    })
+  }
+}
+else{
+  req.flash("notice", "The Admin Password is Wrong, check and try again")
+  res.render(`account/remove-confirmation/${account_id}`, {
+    title: `Remove Employee: ${employeeName}`,
+      nav,
+      account_firstname: account_firstname,
+      account_lastname: account_lastname, 
+      account_email: account_email,
+      account_id: account_id,
+      errors: null
+  })
+}}
+
+
+
+
+
+module.exports = { buildLogin, buildRegister, registerAccount, accountLogin, buildAccountManagement, buildAccountUpdate,accountUpdateAccount, accountUpdatePassword, logout, buildAddEmployee, processAddEmployee, buildRemoveEmployee, buildRemoveEmployeeConfirmation, processRemoveEmployee}
