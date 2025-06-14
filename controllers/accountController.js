@@ -297,9 +297,8 @@ async function logout(req, res, next) {
    if(req.cookies && req.cookies.jwt){
     res.clearCookie("jwt")
     req.flash("notice", "You are logged out")
-    res.redirect("/")
+    return res.redirect("/")
    }
-   
    res.redirect("/")
 }
 

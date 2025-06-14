@@ -63,7 +63,7 @@ invCont.buildManagement = async function(req, res, next){
     errors: null
   })
   }
-  next()
+
 }
 
 // Build add classification view
